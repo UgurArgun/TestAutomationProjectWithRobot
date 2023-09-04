@@ -19,30 +19,25 @@ Should be able to add new customer
         [Documentation]    This is some basic info about the test
         [Tags]             1006         Smoke           Contacts
         CrmApp.Go to "Home" Page
-        click link             Sign In
-        wait until page contains    Login
+        CrmApp.login With Valid Credentials     ${VALID_USERNAME}       ${VALID_PASSWORD}
 
-        input text             id=email-id          ${VALID_USERNAME}
-        input text             id=password          ${VALID_PASSWORD}
-        click button           Submit
-
-        wait until page contains    Customer Service
-        wait until page contains    Our Happy Customer
-
-        click link             id=new-customer
+        #ADD CUSTOMER
+        click link                  id=new-customer
         wait until page contains    Add Customer
 
-        input text             id=EmailAddress              abc@abc.com
-        input text             id=FirstName                 Sam
-        input text             id=LastName                  Adams
-        input text             id=City                      Dallas
+        input text                  id=EmailAddress              abc@abc.com
+        input text                  id=FirstName                 Sam
+        input text                  id=LastName                  Adams
+        input text                  id=City                      Dallas
         select from list by value    id=StateOrRegion       TX
-        select radio button    gender                       male
-        select checkbox        name=promos-name
-        click button           Submit
+        select radio button         gender                       male
+        select checkbox             name=promos-name
+        click button                Submit
         wait until page contains    Success! New customer added.
-        sleep             3s
+        sleep                       3s
 
-
+        #LOG OUT
+        click link                  Sign Out
+        wait until page contains    Signed Out
 
 *** Keywords ***
